@@ -4,9 +4,12 @@ let socket = null;
 
 export const getSocket = () => {
   if (!socket) {
-    socket = io('http://localhost:9092', {
+    // Vercel par set kiya hua VITE_SOCKET_URL yahan aayega
+    const socketUrl = import.meta.env.VITE_SOCKET_URL || 'http://localhost:9092';
+    
+    socket = io(socketUrl, {
       transports: ['polling', 'websocket'], 
-      withCredentials: false, // <--- Ye line CORS fix karti hai
+      withCredentials: false, 
       forceNew: true,
       reconnection: true,
       reconnectionAttempts: 10,
