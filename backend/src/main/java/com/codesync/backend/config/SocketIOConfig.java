@@ -7,12 +7,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SocketIOConfig {
-    // Host waise hi rahega (0.0.0.0 Render par chalega)
+    
     @Value("${socketio.host:0.0.0.0}")
     private String host;
 
-    // Yahan change kiya gaya hai: PORT env variable use hoga, na mile to 8080
-    @Value("${PORT:8080}") 
+    // Yahan change kiya hai: PORT ki jagah server.port use karo
+    @Value("${server.port}") 
     private int port;
 
     @Bean
