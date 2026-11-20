@@ -15,15 +15,25 @@ public class SocketIOConfig {
     @Value("${socketio.port:9092}") 
     private int port;
 
-    @Bean
-    public SocketIOServer socketIOServer() {
-        com.corundumstudio.socketio.Configuration config = new com.corundumstudio.socketio.Configuration();
-        config.setHostname(host);
-        config.setPort(port);
+   @Bean
+public SocketIOServer socketIOServer() {
+    com.corundumstudio.socketio.Configuration config = new com.corundumstudio.socketio.Configuration();
+    config.setHostname(host);
+    config.setPort(port);
+    config.setOrigin("*");
 
-        // SABHI origins allow karein taaki CORS error na aaye
-        config.setOrigin("*");
+    SocketIOServer server = new SocketIOServer(config);
 
-        return new SocketIOServer(config);
-    }
+
+    server.addConnectListener(client -> {
+        System.out.println("SOCKET CLIENT CONNECTED: " + client.getSessionId());
+    });
+
+
+    server.addDisconnectListener(client -> {
+        System.out.println("SOCKET CLIENT DISCONNECTED: " + client.getSessionId());
+    });
+
+    return server;
+}
 }
