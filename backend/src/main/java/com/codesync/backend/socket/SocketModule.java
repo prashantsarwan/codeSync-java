@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 public class SocketModule {
     @Autowired
     private SocketIOServer server;
-
     @Autowired
     private SocketHandler handler;
 

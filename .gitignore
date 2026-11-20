@@ -1,6 +1,6 @@
 
 # Backend - Spring Boot
-backend/src/main/resources/application.properties
+
 backend/target/
 
 # Frontend - Environment variables
