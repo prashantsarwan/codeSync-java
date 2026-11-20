@@ -12,7 +12,7 @@ public class SocketIOConfig {
     private String host;
 
     // Yahan change kiya hai: PORT ki jagah server.port use karo
-    @Value("${server.port:9092}") 
+    @Value("${socketio.port:9092}") 
     private int port;
 
     @Bean
